@@ -2,6 +2,7 @@ import React , {Component} from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Produtoconsumer } from '../context';
+import { prototype } from 'prop-types';
 
 
 
@@ -48,6 +49,19 @@ export default class Product extends Component {
         )
     }
 }
+
+Product.protoType={
+    product:propTypes.shape({
+        id:propTypes.number,
+
+        img:propTypes.string,
+        title:propTypes.string,
+        price:propTypes.number,
+        incart:propTypes.bool,
+        
+    }).isRequired
+};
+
 
 const ProductWrapper = styled.div`
 .cart-btn{
