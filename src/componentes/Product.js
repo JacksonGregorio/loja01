@@ -2,7 +2,7 @@ import React , {Component} from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Produtoconsumer } from '../context';
-import { prototype } from 'prop-types';
+import PropTypes from 'prop-types';
 
 
 
@@ -14,15 +14,20 @@ export default class Product extends Component {
             <ProductWrapper className='col-sm mx-auto col-md-6 col-lg-3 my-3'>
                 <div className='card'>
 
-                    <div className='img-container p-5' onClick={()=>console.log("esta iamgem é do produto")}>
+                    <Produtoconsumer>
+
+                        {value =>(
+
+
+                    <div className='img-container p-5' onClick={()=>value.handleDetalhe(id)}>
                         <Link to={"/Details"}>
                             <img src={img} alt='product' className='card-img-top'/>
                         </Link>
-                        <button className='cart-btn' id='btn-cart' disabled={incart? true:false} onClick={()=>{console.log("add para carrinho")}}>
+                        <button className='cart-btn' id='btn-cart' disabled={incart? true:false} onClick={()=>{value.addTocarrinho(id); value.openModal(id);}}>
                         {incart ?(
                             <p className='text-capitalize mb-8' disabled>
                                 {""}
-                                já existe
+                                x
                             </p>
                         ):(
                             <i className='fas fa-cart-plus' />
@@ -30,6 +35,8 @@ export default class Product extends Component {
                         </button>
 
                     </div>
+                    )}
+                    </Produtoconsumer>
 
                     <div className='card-footer d-flex'>
 
@@ -51,13 +58,12 @@ export default class Product extends Component {
 }
 
 Product.protoType={
-    product:propTypes.shape({
-        id:propTypes.number,
-
-        img:propTypes.string,
-        title:propTypes.string,
-        price:propTypes.number,
-        incart:propTypes.bool,
+    product:PropTypes.shape({
+        id:PropTypes.number,
+        img:PropTypes.string,
+        title:PropTypes.string,
+        price:PropTypes.number,
+        incart:PropTypes.bool,
         
     }).isRequired
 };

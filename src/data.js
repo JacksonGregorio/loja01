@@ -96,9 +96,9 @@ export const detalhesproduto ={
     id: 1,
     title: "produto numero 1",
     img:"img/Bootstrap_logo2.svg.png",
-    price:1,
+    price:20,
     company:"company nine",
-    info:"nove",
+    info:"informação não existe",
     incart:false,
     cont: 0,
     total:0
